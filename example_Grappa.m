@@ -5,12 +5,17 @@ clear
 
 load ('kdata.mat');
 load ('refscan.mat');
+%%
+% load('data.mat');
+% refscan=data(:,60:1:90);
+% % data(:,2:2:end)=0;
+% KSpaceDATA=data;
 res=DoGrappa(KSpaceDATA,refscan);
 subplot(2,2,1);
-imshow(sqrt(sum(abs(fft2c(KSpaceDATA)),3)'),[]);
+imshow(fftshift(sqrt(sum(abs(fft2(KSpaceDATA)),3)')),[]);
 title('image before Grappa recon');
 subplot(2,2,2);
-imshow(sqrt(sum(abs(fft2c(res)),3)'),[]);
+imshow(fftshift(sqrt(sum(abs(fft2(res)),3)')),[]);
 title('image after Grappa recon');
 subplot(2,2,3);
 imshow(abs(KSpaceDATA(:,:,1))',[]);
